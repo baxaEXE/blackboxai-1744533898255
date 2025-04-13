@@ -1,0 +1,69 @@
+<nav class="bg-white shadow-lg">
+    <div class="max-w-6xl mx-auto px-4">
+        <div class="flex justify-between">
+            <div class="flex space-x-7">
+                <div>
+                    <a href="{% url 'home' %}" class="flex items-center py-4 px-2">
+                        <span class="font-semibold text-gray-500 text-lg">Barbershop</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="{% url 'home' %}" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Home</a>
+                    <a href="{% url 'barbers' %}" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Barbers</a>
+                    <a href="{% url 'services' %}" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Services</a>
+                    <a href="{% url 'gallery' %}" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Our Work</a>
+                    <a href="{% url 'shop' %}" class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Shop</a>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center space-x-3">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'profile' %}" class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-gray-100 transition duration-300">
+                        <i class="fas fa-user-circle mr-1"></i>Profile
+                    </a>
+                    <a href="{% url 'logout' %}" class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-gray-100 transition duration-300">
+                        <i class="fas fa-sign-out-alt mr-1"></i>Logout
+                    </a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="py-2 px-2 font-medium text-gray-500 rounded hover:bg-gray-100 transition duration-300">
+                        <i class="fas fa-sign-in-alt mr-1"></i>Login
+                    </a>
+                    <a href="{% url 'register' %}" class="py-2 px-3 font-medium text-white bg-blue-500 rounded hover:bg-blue-400 transition duration-300">
+                        <i class="fas fa-user-plus mr-1"></i>Register
+                    </a>
+                {% endif %}
+            </div>
+            <!-- Mobile menu button -->
+            <div class="md:hidden flex items-center">
+                <button class="outline-none mobile-menu-button">
+                    <i class="fas fa-bars text-gray-500 text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile menu -->
+    <div class="hidden mobile-menu">
+        <ul class="">
+            <li><a href="{% url 'home' %}" class="block text-sm px-2 py-4 hover:bg-gray-100 transition duration-300">Home</a></li>
+            <li><a href="{% url 'barbers' %}" class="block text-sm px-2 py-4 hover:bg-gray-100 transition duration-300">Barbers</a></li>
+            <li><a href="{% url 'services' %}" class="block text-sm px-2 py-4 hover:bg-gray-100 transition duration-300">Services</a></li>
+            <li><a href="{% url 'gallery' %}" class="block text-sm px-2 py-4 hover:bg-gray-100 transition duration-300">Our Work</a></li>
+            <li><a href="{% url 'shop' %}" class="block text-sm px-2 py-4 hover:bg-gray-100 transition duration-300">Shop</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'profile' %}" class="block text-sm px-2 py-4 hover:bg-gray-100 transition duration-300">Profile</a></li>
+                <li><a href="{% url 'logout' %}" class="block text-sm px-2 py-4 hover:bg-gray-100 transition duration-300">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}" class="block text-sm px-2 py-4 hover:bg-gray-100 transition duration-300">Login</a></li>
+                <li><a href="{% url 'register' %}" class="block text-sm px-2 py-4 hover:bg-gray-100 transition duration-300">Register</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<script>
+    const btn = document.querySelector(".mobile-menu-button");
+    const menu = document.querySelector(".mobile-menu");
+
+    btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+    });
+</script>
